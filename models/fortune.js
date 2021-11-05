@@ -6,6 +6,10 @@ class Fortune {
     }
 
     static all = [];
+
+    static delete = index => {
+        this.all.splice(index, 1);
+    }
 };
 
 module.exports = Fortune;

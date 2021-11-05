@@ -24,7 +24,7 @@ module.exports = {
     },
     deleteFortune: (req, res) => {
         let index = req.params.index;
-        // delete Fortune.all[index]
+        Fortune.delete(index);
         res.status(200).send(index);
     }
 }
