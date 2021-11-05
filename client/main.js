@@ -9,6 +9,8 @@ document.getElementById("complimentButton").onclick = function () {
 // BOILERPLATE FROM INDEX.HTML
 
 let fortuneForm = document.getElementById('new-fortune');
+let select = document.getElementById('del-select');
+let deleteBtn = document.getElementById('del-btn');
 
 fetchFortune = () => {
     axios.get("http://localhost:4000/api/fortune")
@@ -17,7 +19,15 @@ fetchFortune = () => {
 
 generateFortunes = () => {
     axios.get("http://localhost:4000/api/fortune/gen")
-    .then(res => console.log(res.data));
+    .then(res => populateOptions(res.data));
+}
+
+populateOptions = fortunes => {
+    fortunes.forEach((fortune, index) => {
+        let option = `
+        <option value=${index}>${fortune.text}</option>`
+        select.innerHTML += option;
+    })
 }
 
 newFortune = e => {

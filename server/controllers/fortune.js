@@ -12,7 +12,7 @@ module.exports = {
             fortunes.forEach(fortune => new Fortune(fortune.text));
         }
         if (fortunes) {
-            res.status(200).send("Fortunes generated.");
+            res.status(200).send(Fortune.all);
         } else {
             res.status(500).send("Error generating fortunes.")
         }
