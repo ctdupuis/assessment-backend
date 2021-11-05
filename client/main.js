@@ -32,6 +32,16 @@ populateOptions = fortunes => {
     })
 }
 
+addOption = fortune => {
+    let { index, text } = fortune;
+    let option = document.createElement('option');
+    option.id = `f-${index}`;
+    option.value = index;
+    option.innerText = text;
+    select.appendChild(option)
+}
+
+
 newFortune = e => {
     e.preventDefault();
     let value = e.target.children[1].value;
@@ -39,7 +49,10 @@ newFortune = e => {
         text: value
     }
     axios.post('http://localhost:4000/api/fortune', fortune)
-    .then(res => renderFortune(res.data, "post"));
+    .then(res => {
+        renderFortune(res.data, "post");
+        addOption(res.data);
+    });
 
     fortuneForm.reset();
 }
@@ -65,7 +78,7 @@ renderFortune = (data, type) => {
     }
 
     let fortune = document.createElement('h3');
-    fortune.innerText = data;
+    fortune.innerText = data.text;
     target.appendChild(fortune);
 }
 

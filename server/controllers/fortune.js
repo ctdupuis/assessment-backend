@@ -20,7 +20,13 @@ module.exports = {
     createFortune: (req, res) => {
         let text = req.body.text;
         let newFortune = new Fortune(text);
-        res.status(200).send(newFortune.text);
+        let target = Fortune.all.find(f => f.text === text);
+        let index = Fortune.all.indexOf(target);
+        let fObj = {
+            index: index,
+            text: newFortune.text
+        };
+        res.status(200).send(fObj);
     },
     deleteFortune: (req, res) => {
         let index = req.params.index;
