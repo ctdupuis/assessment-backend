@@ -7,3 +7,5 @@
 - Can receive a random fortune from pressing the button
 
 - Create new fortunes through the form
+
+- Delete fortunes through a select form

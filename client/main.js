@@ -10,7 +10,7 @@ document.getElementById("complimentButton").onclick = function () {
 
 let fortuneForm = document.getElementById('new-fortune');
 let select = document.getElementById('del-select');
-let deleteBtn = document.getElementById('del-btn');
+let delForm = document.getElementById('del-form');
 
 fetchFortune = () => {
     axios.get("http://localhost:4000/api/fortune")
@@ -24,15 +24,17 @@ generateFortunes = () => {
 
 populateOptions = fortunes => {
     fortunes.forEach((fortune, index) => {
-        let option = `
-        <option value=${index}>${fortune.text}</option>`
-        select.innerHTML += option;
+        let option = document.createElement('option');
+        option.id = `f-${index}`;
+        option.value = index;
+        option.innerText = fortune.text;
+        select.appendChild(option);
     })
 }
 
 newFortune = e => {
     e.preventDefault();
-    let value = e.target.children[1].value
+    let value = e.target.children[1].value;
     let fortune = {
         text: value
     }
@@ -40,6 +42,17 @@ newFortune = e => {
     .then(res => renderFortune(res.data, "post"));
 
     fortuneForm.reset();
+}
+
+deleteFortune = e => {
+    e.preventDefault();
+    let target = e.submitter.previousElementSibling.value;
+    axios.delete(`http://localhost:4000/api/fortune/${target}`)
+    .then(res => removeOption(res.data));
+}
+
+removeOption = index => {
+    document.getElementById(`f-${index}`).remove();
 }
 
 renderFortune = (data, type) => {
@@ -58,4 +71,5 @@ renderFortune = (data, type) => {
 
 document.getElementById('fortune').addEventListener("click", fetchFortune);
 document.addEventListener("DOMContentLoaded", generateFortunes);
-fortuneForm.addEventListener('submit', newFortune);
+fortuneForm.addEventListener("submit", newFortune);
+delForm.addEventListener("submit", deleteFortune);

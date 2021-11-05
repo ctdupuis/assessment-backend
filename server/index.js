@@ -11,7 +11,8 @@ app.use(express.json()); // When we want to be able to accept JSON.
 const {
   getFortune,
   genFortunes,
-  createFortune
+  createFortune,
+  deleteFortune
 } = require('./controllers/fortune');
 
 app.get("/api/compliment", (req, res) => {
@@ -31,5 +32,6 @@ app.get("/api/compliment", (req, res) => {
 app.get("/api/fortune", getFortune);
 app.get("/api/fortune/gen", genFortunes);
 app.post("/api/fortune", createFortune);
+app.delete("/api/fortune/:index", deleteFortune);
 
 app.listen(4000, () => console.log("Server running on 4000"));

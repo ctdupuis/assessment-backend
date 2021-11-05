@@ -21,5 +21,10 @@ module.exports = {
         let text = req.body.text;
         let newFortune = new Fortune(text);
         res.status(200).send(newFortune.text);
+    },
+    deleteFortune: (req, res) => {
+        let index = req.params.index;
+        // delete Fortune.all[index]
+        res.status(200).send(index);
     }
 }
