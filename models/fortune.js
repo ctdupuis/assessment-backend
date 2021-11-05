@@ -6,4 +6,6 @@ class Fortune {
     }
 
     static all = [];
-}
+};
+
+module.exports = Fortune;
