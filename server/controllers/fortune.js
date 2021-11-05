@@ -16,5 +16,10 @@ module.exports = {
         } else {
             res.status(500).send("Error generating fortunes.")
         }
+    },
+    createFortune: (req, res) => {
+        let text = req.body.text;
+        let newFortune = new Fortune(text);
+        res.status(200).send(newFortune.text);
     }
 }
