@@ -9,3 +9,5 @@
 - Create new fortunes through the form
 
 - Delete fortunes through a select form
+
+- Update a fortune of your choice

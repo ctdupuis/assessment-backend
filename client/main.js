@@ -8,9 +8,11 @@ document.getElementById("complimentButton").onclick = function () {
 
 // BOILERPLATE FROM INDEX.HTML
 
-let fortuneForm = document.getElementById('new-fortune');
-let select = document.getElementById('del-select');
+let newForm = document.getElementById('new-fortune');
+let delSelect = document.getElementById('del-select');
 let delForm = document.getElementById('del-form');
+let upSelect = document.getElementById('up-select');
+let upForm = document.getElementById('up-form');
 
 fetchFortune = () => {
     axios.get("http://localhost:4000/api/fortune")
@@ -25,10 +27,13 @@ generateFortunes = () => {
 populateOptions = fortunes => {
     fortunes.forEach((fortune, index) => {
         let option = document.createElement('option');
-        option.id = `f-${index}`;
+        option.id = `d-${index}`;
         option.value = index;
         option.innerText = fortune.text;
-        select.appendChild(option);
+        let clone = option.cloneNode(true);
+        clone.id = `u-${index}`;
+        delSelect.appendChild(option);
+        upSelect.appendChild(clone);
     })
 }
 
@@ -38,7 +43,7 @@ addOption = fortune => {
     option.id = `f-${index}`;
     option.value = index;
     option.innerText = text;
-    select.appendChild(option)
+    delSelect.appendChild(option)
 }
 
 
@@ -54,7 +59,7 @@ newFortune = e => {
         addOption(res.data);
     });
 
-    fortuneForm.reset();
+    newForm.reset();
 }
 
 deleteFortune = e => {
@@ -64,8 +69,28 @@ deleteFortune = e => {
     .then(res => removeOption(res.data));
 }
 
+updateFortune = e => {
+    e.preventDefault();
+    let index = e.target.children[0].value;
+    let text = e.target.children[1].value;
+    let obj = {
+        index: index,
+        text: text
+    }
+    axios.put(`http://localhost:4000/api/fortune/${index}`, obj)
+    .then(res => changeOptions(res.data));
+}
+
 removeOption = index => {
     document.getElementById(`f-${index}`).remove();
+}
+
+changeOptions = fortune => {
+    let { index, text } = fortune;
+    let delOption = document.getElementById(`d-${index}`);
+    let upOption = document.getElementById(`u-${index}`);
+    delOption.innerText = text;
+    upOption.innerText = text;
 }
 
 renderFortune = (data, type) => {
@@ -84,5 +109,6 @@ renderFortune = (data, type) => {
 
 document.getElementById('fortune').addEventListener("click", fetchFortune);
 document.addEventListener("DOMContentLoaded", generateFortunes);
-fortuneForm.addEventListener("submit", newFortune);
+newForm.addEventListener("submit", newFortune);
 delForm.addEventListener("submit", deleteFortune);
+upForm.addEventListener("submit", updateFortune);

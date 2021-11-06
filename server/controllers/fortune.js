@@ -32,5 +32,15 @@ module.exports = {
         let index = req.params.index;
         Fortune.delete(index);
         res.status(200).send(index);
+    },
+    updateFortune: (req, res) => {
+        let { index, text } = req.body;
+        let target = Fortune.all[+index];
+        target.text = text;
+        let fObj = {
+            index: index,
+            text: target.text
+        };
+        res.status(200).send(fObj);
     }
 }
