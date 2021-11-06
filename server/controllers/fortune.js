@@ -39,7 +39,7 @@ module.exports = {
         target.text = text;
         let fObj = {
             index: index,
-            text: target.text
+            text: text
         };
         res.status(200).send(fObj);
     }

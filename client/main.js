@@ -43,7 +43,10 @@ addOption = fortune => {
     option.id = `f-${index}`;
     option.value = index;
     option.innerText = text;
-    delSelect.appendChild(option)
+    let clone = option.cloneNode(true);
+    clone.id = `u-${index}`;
+    delSelect.appendChild(option);
+    upSelect.appendChild(clone);
 }
 
 
@@ -72,13 +75,15 @@ deleteFortune = e => {
 updateFortune = e => {
     e.preventDefault();
     let index = e.target.children[0].value;
-    let text = e.target.children[1].value;
+    let text = e.target.children[1].children[0].value;
     let obj = {
         index: index,
         text: text
     }
     axios.put(`http://localhost:4000/api/fortune/${index}`, obj)
     .then(res => changeOptions(res.data));
+
+    upForm.reset();
 }
 
 removeOption = index => {
@@ -102,16 +107,19 @@ renderFortune = (text, type) => {
     if (type === "get") {
         target = document.getElementById('random-fortune-body');
         fortune.innerText = text;
+        fortune.className = "text";
     } else {
         target = document.getElementById('new-fortune-body');
         fortune.innerText = text.text
+        fortune.className = "text";
     }
 
     if (target.children.length === 0) {
+        target.style.display = "";
         target.appendChild(fortune);
     } else {
+        target.style.display = "";
         let h3 = target.children[0];
-        // debugger
         h3.innerText = fortune.innerText;
     }
     

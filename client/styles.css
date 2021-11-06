@@ -6,7 +6,8 @@
 }
 
 body {
-    background-color: var(--perry);
+    background-color: var(--black);
+    font-family: 'Play', sans-serif;;
 }
 
 * {
@@ -14,7 +15,7 @@ body {
 }
 
 h3 {
-    color: var(--blue);
+    color: var(--purp);
 }
 
 .wrapper {
@@ -38,15 +39,23 @@ h3 {
     margin: 2% 0;
 }
 
-.title, select, input {
-    margin: 2% 0
+h3, select, input {
+    margin: 3% 0;
+    font-family: 'Play', sans-serif;
 }
 
+.text {
+    font-family: 'Permanent Marker', cursive;
+}
+
+#new-fortune-body, #random-fortune-body {
+    padding: 1%;
+}
 
 .cont {
-    background-color: var(--purp);
+    background-color: var(--perry);
     border-radius: 10px;
-    box-shadow: 5px 5px 25px var(--blue);
+    box-shadow: 5px 5px 25px var(--purp);
 }
 
 input, select {
@@ -54,12 +63,12 @@ input, select {
     border-radius: 5px;
     border: none;
     padding: .3em;
-    color: var(--blue);
-    background-color: #000000;
+    color: var(--purp);
+    background-color: whitesmoke;
 }
 
 input:focus {
-    background-color: var(--black);
+    box-shadow: inset 0px 1px 10px var(--blue);
     transition: .2s;
 }
 
@@ -69,12 +78,13 @@ button {
     outline: none;
     color: var(--blue);
     padding: .3em;
-    background-color: black;
+    background-color: whitesmoke;
+    font-family: 'Play', sans-serif;
 }
 
 button:hover {
-    background-color: var(--blue);
-    color: var(--black);
+    background-color: lightgrey;
+    color: var(--purp);
     cursor: pointer;
     transition: .2s;
 }
