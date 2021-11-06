@@ -82,7 +82,8 @@ updateFortune = e => {
 }
 
 removeOption = index => {
-    document.getElementById(`f-${index}`).remove();
+    document.getElementById(`d-${index}`).remove();
+    document.getElementById(`u-${index}`).remove();
 }
 
 changeOptions = fortune => {
@@ -93,17 +94,19 @@ changeOptions = fortune => {
     upOption.innerText = text;
 }
 
-renderFortune = (data, type) => {
+renderFortune = (text, type) => {
     let target;
+
+    let fortune = document.createElement('h3');
 
     if (type === "get") {
         target = document.getElementById('random-fortune-body');
+        fortune.innerText = text;
     } else {
         target = document.getElementById('new-fortune-body');
+        fortune.innerText = text.text
     }
 
-    let fortune = document.createElement('h3');
-    fortune.innerText = data.text;
     target.appendChild(fortune);
 }
 
