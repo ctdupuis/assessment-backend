@@ -40,7 +40,7 @@ populateOptions = fortunes => {
 addOption = fortune => {
     let { index, text } = fortune;
     let option = document.createElement('option');
-    option.id = `f-${index}`;
+    option.id = `d-${index}`;
     option.value = index;
     option.innerText = text;
     let clone = option.cloneNode(true);
