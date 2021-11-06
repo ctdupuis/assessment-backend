@@ -107,7 +107,14 @@ renderFortune = (text, type) => {
         fortune.innerText = text.text
     }
 
-    target.appendChild(fortune);
+    if (target.children.length === 0) {
+        target.appendChild(fortune);
+    } else {
+        let h3 = target.children[0];
+        // debugger
+        h3.innerText = fortune.innerText;
+    }
+    
 }
 
 document.getElementById('fortune').addEventListener("click", fetchFortune);

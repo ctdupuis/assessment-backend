@@ -1,0 +1,80 @@
+:root {
+    --purp: rgb(173, 13, 241);
+    --blue: rgb(15, 138, 245);
+    --perry: #CCCCFF;
+    --black: rgb(55, 55, 55);
+}
+
+body {
+    background-color: var(--perry);
+}
+
+* {
+    margin: 0;
+}
+
+h3 {
+    color: var(--blue);
+}
+
+.wrapper {
+    padding: 2% 15%;
+}
+
+.flex-cont {
+    display: flex;
+}
+
+.centered {
+    justify-content: center;
+    align-items: center;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.top-space {
+    margin: 2% 0;
+}
+
+.title, select, input {
+    margin: 2% 0
+}
+
+
+.cont {
+    background-color: var(--purp);
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px var(--blue);
+}
+
+input, select {
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    padding: .3em;
+    color: var(--blue);
+    background-color: #000000;
+}
+
+input:focus {
+    background-color: var(--black);
+    transition: .2s;
+}
+
+button {
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    color: var(--blue);
+    padding: .3em;
+    background-color: black;
+}
+
+button:hover {
+    background-color: var(--blue);
+    color: var(--black);
+    cursor: pointer;
+    transition: .2s;
+}

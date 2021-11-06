@@ -2,30 +2,41 @@
 <html>
   <head>
     <title>Back End Assessment</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
-  <body class="container">
-    <button id="complimentButton">Get a compliment</button>
+  <body class="wrapper">
 
+    <div class="flex-cont centered">
+      <button id="complimentButton">Get a compliment</button>
+    </div>
     
-    <button id="fortune">Receive your fortune</button>
 
-    <div id="random-fortune-body">
-      <!-- Random fortune appended here -->
+    <div class="flex-cont cont centered col top-space">
+      <button id="fortune">Receive your fortune</button>
+  
+      <div id="random-fortune-body">
+        <!-- Random fortune appended here -->
+      </div>
     </div>
 
-    <form id="new-fortune">
-      <h3>Add some wise words of your own</h3>
 
-      <input type="text" name="fortune" placeholder="Enter your fortune" />
-      <button type="submit">Create Fortune</button>
-    </form>
 
-    <div id="new-fortune-body">
-      <!-- New fortune appended here -->
+    <div class="flex-cont cont centered col top-space">
+      <form id="new-fortune">
+        <h3 class="title">Add some wise words of your own</h3>
+  
+        <input type="text" name="fortune" placeholder="Enter your fortune" />
+        <button type="submit">Create Fortune</button>
+      </form>
+  
+      <div id="new-fortune-body">
+        <!-- New fortune appended here -->
+      </div>
     </div>
 
-    <div class="select-container">
-      <h3>If you think a fortune is nonsense, choose one to delete</h3>
+
+    <div class="flex-cont cont centered top-space col">
+      <h3 class="title">If you think a fortune is nonsense, choose one to delete</h3>
       <form id="del-form">
         <select id="del-select">
           <!-- Fortune options populate -->
@@ -34,16 +45,18 @@
       </form>
     </div>
 
-    <div id="updated-fortune">
-      <h3>If you think a fortune needs a change, have at it</h3>
+    <div class="flex-cont cont centered top-space col">
+      <h3 class="title">If you think a fortune needs a change, have at it</h3>
       <form id="up-form">
         <select id="up-select">
           <!-- Fortune options populate -->
         </select>
 
-        <input type="text" name="update" placeholder="Change a fortune" />
+        <div>
+          <input type="text" name="update" placeholder="Change selected fortune" />
+          <button type="submit">Update</button>
+        </div>
 
-        <button type="submit">Update</button>
       </form>
     </div>
 
